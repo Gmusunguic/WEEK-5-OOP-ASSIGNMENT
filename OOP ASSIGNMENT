@@ -1,0 +1,72 @@
+ACTIVITY 1
+# Base class representing a Smartphone
+class Smartphone:
+    def __init__(self, brand, model, battery_life):
+        self.brand = brand
+        self.model = model
+        self.battery_life = battery_life  # in hours
+
+    def make_call(self, number):
+        return f"Calling {number} from {self.brand} {self.model}."
+
+    def take_photo(self):
+        return f"Taking a photo with {self.brand} {self.model}."
+
+    def __str__(self):
+        return f"{self.brand} {self.model} with {self.battery_life} hours of battery life."
+
+# Subclass representing a Smartphone with a camera
+class SmartphoneWithCamera(Smartphone):
+    def __init__(self, brand, model, battery_life, camera_megapixels):
+        super().__init__(brand, model, battery_life)
+        self.camera_megapixels = camera_megapixels  # Camera resolution
+
+    def take_photo(self):
+        return f"Taking a {self.camera_megapixels}MP photo with {self.brand} {self.model}."
+
+    def record_video(self):
+        return f"Recording video with {self.brand} {self.model} at {self.camera_megapixels}MP."
+
+# Example of creating a Smartphone and SmartphoneWithCamera
+smartphone = Smartphone("Generic", "Model X", 24)
+camera_phone = SmartphoneWithCamera("BrandY", "Model Z", 20, 12)
+
+# Test methods
+print(smartphone)                     # Output Smartphone details
+print(smartphone.make_call("123456"))  # Make a call
+print(camera_phone)                   # Output Camera Smartphone details
+print(camera_phone.take_photo())      # Take a photo with high resolution
+print(camera_phone.record_video())    # Record video
+
+
+ACTIVITY 2
+# Base class representing a Vehicle
+class Vehicle:
+    def move(self):
+        raise NotImplementedError("This method should be overridden in subclasses.")
+
+# Subclass representing a Car
+class Car(Vehicle):
+    def move(self):
+        return "Driving 🚗"
+
+# Subclass representing a Plane
+class Plane(Vehicle):
+    def move(self):
+        return "Flying ✈️"
+
+# Subclass representing a Bicycle
+class Bicycle(Vehicle):
+    def move(self):
+        return "Pedaling 🚴"
+
+# Function to demonstrate polymorphism
+def demonstrate_movement(vehicles):
+    for vehicle in vehicles:
+        print(vehicle.move())
+
+# Example of creating various Vehicle types
+vehicles = [Car(), Plane(), Bicycle()]
+
+# Demonstrate the movement of each vehicle
+demonstrate_movement(vehicles)
